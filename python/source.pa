@@ -1,0 +1,44 @@
+int partition(array(int) a,int left,int right){
+	int flag;
+	flag = a[left];
+	while(left < right){
+		while(left < right && array[right] > flag){
+			right = right - 1;
+		}
+		a[left] = a[right];
+		while(left < right && array[left] < flag){
+			left = left + 1;
+		}
+		a[right] = left;
+	}
+
+	a[left] = flag;
+
+	return left;
+}
+
+void sort(array(int) a,int left,int right){
+	if(left >= right){
+		return ;
+	}
+
+	int mid;
+	mid = partition(a,left,right);
+
+	sort(a,left,mid - 1);
+	sort(a,mid + 1,right);
+}
+
+void main(){
+	array(int) a(5);
+
+	a[0] = 5;
+	a[1] = 2;
+	a[2] = 3;
+	a[3] = 4;
+	a[4] = 7;
+
+	sort(a,0,4);
+
+	return ;
+}
